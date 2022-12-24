@@ -41,10 +41,10 @@ export default (chain, port, protocol) => {
       send(node.peers),
     validators: ({send}) => 
       send(chain.validators),
-    lookup: ({name}, {send}) => 
-      send(chain.lookup(name)),
-    staticCall: ({contract, method, params}, {send}) => 
-      send(chain.staticCall(contract, method, params)),
+    lookup: async ({name}, {send}) => 
+      send(await chain.lookup(name)),
+    staticCall: async({contract, method, params}, {send}) => 
+      send(await chain.staticCall(contract, method, params)),
     nativeBurns: ({send}) => 
       send(chain.nativeBurns),
     contracts: ({send}) => 
@@ -65,8 +65,8 @@ export default (chain, port, protocol) => {
       send(chain.nativeCalls),  
     participating: ({send}) =>
       send(chain.participating),
-    participate: ({address}, {send}) =>
-      send(chain.participate(address)),
+    participate: async ({address}, {send}) =>
+      send(await chain.participate(address)),
     deployContract: async ({code, params}, {send}) => {
       try {
         const tx = await chain.deployContract(code, params)
