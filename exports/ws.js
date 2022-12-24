@@ -26,9 +26,9 @@ export default (chain, port, protocol) => {
       send(chain.blocks[index]),
     blocks:({amount}, {send}) => {
       send(chain.blocks.slice(amount))},
-    createTransactionFrom: async (params, {send}) => {
+    createTransactionFrom: async ({from, to, method, parameters, nonce}, {send}) => {
       try {
-        const tx = await chain.createTransactionFrom(...params)
+        const tx = await chain.createTransactionFrom(from, to, method, parameters, nonce)
         await tx.wait()
         send(tx)
       } catch (error) {
