@@ -31,8 +31,8 @@ export default (chain, port, networkVersion) => {
   })
 
   // todo finish ...
-  api.use(cors)
-  api.use(router)
+  api.use(cors('*'))
+  api.use(router.routes())
   api.listen(port)
 }
 
