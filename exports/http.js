@@ -8,7 +8,7 @@ import Showdown from 'showdown'
 const api = new koa()
 const router = new Router()
 
-const converter = new showdown.Converter()
+const converter = new Showdown.Converter()
 const apiFile = await readFile('./api.md')
 
 export default (chain, port, networkVersion) => {
