@@ -27,7 +27,7 @@ export default (chain, port, networkVersion) => {
 
   router.get('balanceOf', async ctx => {
     const balance = (await chain.balances)[ctx.query.address]    
-      ctx.body = format ? formatUnits(balance) : balance
+    ctx.body = ctx.query.format ? formatUnits(balance) : balance
   })
   
   router.get('/selectedAccount', ctx => ctx.body = peernet.selectedAccount)
@@ -71,9 +71,9 @@ export default (chain, port, networkVersion) => {
     ctx.body = chain.validators
   )
 
-  router.get('/lookup', ctx => 
-    ctx.body = chain.lookup(ctx.query.name)
-  )
+  router.get('/lookup', async ctx => {
+    ctx.body = await chain.lookup(ctx.query.name)
+  })
   
   router.get('/staticCall', async ctx => 
     ctx.body = await chain.staticCall(ctx.query.contract, ctx.query.method, ctx.query.params)

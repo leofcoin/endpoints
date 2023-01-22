@@ -1,4 +1,4 @@
-#### selectAccount(address: `string`)
+#### [selectAccount(address: `string`)](https://remote.leofcoin.org/select-account?address=)
 `address`: desired address
 > set default account to given address
 ```js
@@ -6,14 +6,14 @@ await client.selectAccount(address)
 ```
 <br>
 
-#### getBlock(index: `number`)
+#### [getBlock(index: `number`)](https://remote.leofcoin.org/getblock?index=0)
 `index`: index of the block to fetch<br>
 ```js
 await client.getBlock(10)
 ```
 <br>
 
-#### blocks(amount)
+#### [blocks(amount)](https://remote.leofcoin.org/blocks)
 `amount`: the amount to slice
 ```js
 await client.blocks(-25)
@@ -32,7 +32,7 @@ await client.createTransactionFrom(from, to, method, parameters, nonce)
 ```
 <br>
 
-#### lookup(name: `string`)
+#### [lookup(name: `string`)](https://remote.leofcoin.org/lookup?name=ArtOnlineContractFactory)
 `name`: name of the contract to lookup the address and owner of
 ```js
 await client.lookup('contractName')
@@ -75,26 +75,26 @@ const tx = await client.deployContract(code, params)
 ```
 <br>
 
-#### accounts() 
+#### [accounts()](https://remote.leofcoin.org/accounts)
 ```js
 await client.accounts()
 ```
 <br>
 
-#### hasTransactionToHandle() 
+#### [hasTransactionToHandle()](https://remote.leofcoin.org/hasTransactionToHandle)
 ```js
 await client.hasTransactionToHandle()
 ```
 <br>
 
-#### balances()
+#### [balances()](https://remote.leofcoin.org/balances)
 > returns all balances
 ```js
 await client.balances()
 ```
 <br>
 
-#### balancOf(address: `string`, format: `boolean`)
+#### [balancOf(address: `string`, format: `boolean`)](https://remote.leofcoin.org/balanceOf?address=YTqxKshWH4Qo7KprGYxQVCNYutedaE6YGoUdUPnUdFUVBPrTzgsrP&format=true)
 `address`: The address to check<br> 
 `format`: Wether or not to format<br>
 > returns the balance of given address as BigNumber or string (when format is true)
@@ -103,85 +103,85 @@ await client.balanceOf(address, true)
 ```
 <br>
 
-#### selectedAccount()
+#### [selectedAccount()](https://remote.leofcoin.org/selectedAccount)
 ```js
 await client.selectedAccount()
 ```
 <br>
 
-#### peerId()
+#### [peerId()](https://remote.leofcoin.org/peerId)
 ```js
 await client.peerId()
 ```
 <br>
 
-#### peers() 
+#### [peers()](https://remote.leofcoin.org/peers)
 ```js
 await client.peers()
 ```
 <br>
 
-#### validators() 
+#### [validators()](https://remote.leofcoin.org/validators)
 ```js
 await client.validators()
 ```
 <br>
 
-#### nativeBurns()
+#### [nativeBurns()](https://remote.leofcoin.org/nativeBurns)
 ```js
 await client.nativeBurns()
 ```
 <br>
 
-#### contracts()
+#### [contracts()](https://remote.leofcoin.org/contracts)
 ```js
 await client.contracts()
 ```
 <br>
 
-#### nativeMints()
+#### [nativeMints()](https://remote.leofcoin.org/nativeMints)
 ```js
 await client.nativeMints()
 ```
 <br>
 
-#### nativeToken()
+#### [nativeToken()](https://remote.leofcoin.org/nativeToken)
 ```js
 await client.nativeToken()
 ```
 <br>
 
-#### nativeTransfers()
+#### [nativeTransfers()](https://remote.leofcoin.org/nativeTransfers)
 ```js
 await client.  nativeTransfers()
 ```
 <br>
 
-#### totalSize()
+#### [totalSize()](https://remote.leofcoin.org/totalSize)
 ```js
 await client.totalSize()
 ```
 <br>
 
-#### totalTransactions()
+#### [totalTransactions()](https://remote.leofcoin.org/totalTransactions)
 ```js
 await client.totalTransactions()
 ```
 <br>
 
-#### totalBlocks()
+#### [totalBlocks()](https://remote.leofcoin.org/totalBlocks)
 ```js
 await client.totalBlocks()
 ```
 <br>
 
-#### nativeCalls()
+#### [nativeCalls()](https://remote.leofcoin.org/nativeCalls)
 ```js
 await client.nativeCalls()
 ```
 <br>
 
-#### participating()
+#### [participating()](https://remote.leofcoin.org/participating)
 ```js
 await client.participating()
 ```
