@@ -2,11 +2,21 @@ import koa from 'koa'
 import cors from '@koa/cors'
 import Router from '@koa/router'
 import {formatUnits} from '@leofcoin/utils'
+import {readFile} from 'fs/promises'
+import Showdown from 'showdown'
 
 const api = new koa()
 const router = new Router()
 
+const converter = new showdown.Converter()
+const apiFile = await readFile('./api.md')
+
 export default (chain, port, networkVersion) => {
+  // api routes
+  router.get('/', ctx => {
+    ctx.body = converter.makeHtml(apiFile.toString())
+  })
+
   router.get('/network', ctx => {
     ctx.body = networkVersion
   })
