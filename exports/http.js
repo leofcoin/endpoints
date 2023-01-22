@@ -25,7 +25,7 @@ export default (chain, port, networkVersion) => {
     ctx.body = await chain.balances
   })
 
-  router.get('balanceOf', async ctx => {
+  router.get('/balanceOf', async ctx => {
     const balance = (await chain.balances)[ctx.query.address]    
     ctx.body = ctx.query.format ? formatUnits(balance) : balance
   })
@@ -47,6 +47,11 @@ export default (chain, port, networkVersion) => {
   router.get('/hasTransactionToHandle', async ctx => {
     ctx.body = await chain.hasTransactionToHandle()
   })
+
+  router.get('/getNonce', async ctx => {
+    ctx.body = await chain.getNonce(ctx.query.address)
+  })
+
   router.get('/getBlock', ctx => ctx.body = chain.blocks[ctx.query.index])
 
   router.get('/blocks', ctx => {
@@ -119,7 +124,7 @@ export default (chain, port, networkVersion) => {
     ctx.body = chain.participating
   )
 
-  router.get('participate', async ctx =>
+  router.get('/participate', async ctx =>
     ctx.body = await chain.participate(ctx.query.address)
   )
 

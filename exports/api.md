@@ -103,6 +103,15 @@ await client.balanceOf(address, true)
 ```
 <br>
 
+#### [getNonce(address: `string`)](https://remote.leofcoin.org/getNonce?address=YTqxKshWH4Qo7KprGYxQVCNYutedaE6YGoUdUPnUdFUVBPrTzgsrP)
+`address`: The address to check<br> 
+`format`: Wether or not to format<br>
+> returns the balance of given address as BigNumber or string (when format is true)
+```js
+await client.getNonce(address)
+```
+<br>
+
 #### [selectedAccount()](https://remote.leofcoin.org/selectedAccount)
 ```js
 await client.selectedAccount()

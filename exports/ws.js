@@ -9,6 +9,7 @@ export default (chain, port, protocol) => {
       const balance = (await chain.balances)[address]    
       send(format ? formatUnits(balance) : balance)
     },
+    getNonce: async ({address}, {send}) => send((await chain.balances)[address]),
     selectedAccount: ({send}) => send(peernet.selectedAccount),
     selectAccount: async ({address}, {send}) => {
       try {
