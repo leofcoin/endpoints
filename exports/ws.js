@@ -6,8 +6,9 @@ export default (chain, port, protocol) => {
     balances: async ({send}) => 
       send(await chain.balances),
     balanceOf: async ({address, format = false}, {send}) => {
-      const balance = (await chain.balances)[address]    
-      send(format ? formatUnits(balance) : balance)
+      const balance = (await chain.balances)[address]
+      if (balance) send(format ? formatUnits(balance) : balance)
+      else send(0)
     },
     getNonce: async ({address}, {send}) => send((await chain.balances)[address]),
     selectedAccount: ({send}) => send(peernet.selectedAccount),
@@ -27,9 +28,9 @@ export default (chain, port, protocol) => {
       send(chain.blocks[index]),
     blocks:({amount}, {send}) => {
       send(chain.blocks.slice(amount))},
-    createTransactionFrom: async ({from, to, method, parameters, nonce}, {send}) => {
+    sendTransaction: async (transaction, {send}) => {      
       try {
-        const tx = await chain.createTransactionFrom(from, to, method, parameters, nonce)
+        const tx = await chain.sendTransaction(transaction)
         await tx.wait()
         send(tx)
       } catch (error) {

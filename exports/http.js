@@ -4,12 +4,17 @@ import Router from '@koa/router'
 import {formatUnits} from '@leofcoin/utils'
 import {readFile} from 'fs/promises'
 import Showdown from 'showdown'
+import { dirname, join} from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const api = new koa()
 const router = new Router()
 
 const converter = new Showdown.Converter()
-const apiFile = await readFile('./api.md')
+const apiFile = await readFile(join(__dirname, './api.md'))
 
 export default (chain, port, networkVersion) => {
   // api routes
@@ -26,8 +31,9 @@ export default (chain, port, networkVersion) => {
   })
 
   router.get('/balanceOf', async ctx => {
-    const balance = (await chain.balances)[ctx.query.address]    
-    ctx.body = ctx.query.format ? formatUnits(balance) : balance
+    const balance = (await chain.balances)[ctx.query.address]
+    if (balance) ctx.body = ctx.query.format ? formatUnits(balance) : balance
+    else ctx.body = 0
   })
   
   router.get('/selectedAccount', ctx => ctx.body = peernet.selectedAccount)
@@ -58,9 +64,9 @@ export default (chain, port, networkVersion) => {
     ctx.body = chain.blocks.slice(ctx.query.amount)
   })
 
-  router.get('/createTransactionFrom', async ctx => {
-    try {
-      const tx = await chain.createTransactionFrom(ctx.query.from, ctx.query.to, ctx.query.method, ctx.query.parameters, ctx.query.nonce)
+  router.get('/sendTransaction', async ctx => {
+    try {      
+      const tx = await chain.sendTransaction(ctx.query.transaction)
       await tx.wait()
       send(tx)
     } catch (error) {
@@ -75,6 +81,10 @@ export default (chain, port, networkVersion) => {
   router.get('/validators', ctx => 
     ctx.body = chain.validators
   )
+
+  router.get('/peers', ctx => 
+    ctx.body = peernet.peers
+  )  
 
   router.get('/lookup', async ctx => {
     ctx.body = await chain.lookup(ctx.query.name)
