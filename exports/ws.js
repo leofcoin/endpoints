@@ -8,7 +8,7 @@ export default (chain, port, networkVersion) => {
       send({version: networkVersion})
     },
     networkStats: async ({send}) => {
-      send(await shared.networkStats(chain))
+      send(await shared.networkStats(chain, networkVersion))
     },
     balances: async ({send}) => 
       send(await chain.balances),

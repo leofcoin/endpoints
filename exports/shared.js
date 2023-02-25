@@ -1,6 +1,6 @@
 import {formatUnits, BigNumber} from '@leofcoin/utils'
 
-export const networkStats = async (chain) => {
+export const networkStats = async (chain, networkVersion) => {
   let accountsHolding = 0
   let accountsHoldingAmount = BigNumber.from(0)
   let topHolders = []

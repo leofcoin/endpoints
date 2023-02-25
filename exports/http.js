@@ -30,7 +30,7 @@ export default (chain, port, networkVersion) => {
   })
 
   router.get('/networkStats', async () => {
-    ctx.body = await shared.networkStats(chain)
+    ctx.body = await shared.networkStats(chain, networkVersion)
   })
 
   router.get('/balances', async ctx => {
