@@ -4,6 +4,7 @@ import Router from '@koa/router'
 import {formatUnits} from '@leofcoin/utils'
 import {readFile} from 'fs/promises'
 import Showdown from 'showdown'
+import shared from './shared'
 import { dirname, join} from 'path'
 import { fileURLToPath } from 'url'
 
@@ -29,15 +30,7 @@ export default (chain, port, networkVersion) => {
   })
 
   router.get('/networkStats', async () => {
-    ctx.body = {
-      version: networkVersion,
-      peers: peernet.peers,
-      accounts: await accountsStore.length(),
-      accountsHolding: Object.values(await chain.balances).reduce((previous, current) => {
-        const amount = Number(formatUnits(current)) || 0
-        return previous + isNaN(amount) ? 0 : amount
-      }, 0)
-    }
+    ctx.body = await shared.networkStats(chain)
   })
 
   router.get('/balances', async ctx => {

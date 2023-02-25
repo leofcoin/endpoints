@@ -1,21 +1,14 @@
 import Server from 'socket-request-server'
 import {formatUnits} from '@leofcoin/utils'
+import shared from './shared'
 
 export default (chain, port, networkVersion) => {
   return Server({ port, protocol: networkVersion }, {
     network: async () => {
       send({version: networkVersion})
     },
-    networkStats: async () => {
-      send({
-        version: networkVersion,
-        peers: peernet.peers,
-        accounts: await accountsStore.length(),
-        accountsHolding: Object.values(await chain.balances).reduce((previous, current) => {
-          const amount = Number(formatUnits(current)) || 0
-          return previous + isNaN(amount) ? 0 : amount
-        }, 0)
-      })
+    networkStats: async ({send}) => {
+      send(await shared.networkStats(chain))
     },
     balances: async ({send}) => 
       send(await chain.balances),
@@ -36,8 +29,8 @@ export default (chain, port, networkVersion) => {
     },
     accounts: async ({send}) => 
       send(JSON.parse(new TextDecoder().decode((await walletStore.get('accounts'))))),
-    hasTransactionToHandle: ({send}) => 
-      send(chain.hasTransactionToHandle()),
+    hasTransactionToHandle: async ({send}) => 
+      send(await chain.hasTransactionToHandle()),
     getBlock: ({index}, {send}) => 
       send(chain.blocks[index]),
     blocks:({amount}, {send}) => {
