@@ -23,7 +23,21 @@ export default (chain, port, networkVersion) => {
   })
 
   router.get('/network', ctx => {
-    ctx.body = networkVersion
+    ctx.body = {
+      version: networkVersion
+    }
+  })
+
+  router.get('/networkStats', async () => {
+    ctx.body = {
+      version: networkVersion,
+      peers: peernet.peers,
+      accounts: await accountsStore.length(),
+      accountsHolding: Object.values(await chain.balances).reduce((previous, current) => {
+        const amount = Number(formatUnits(current)) || 0
+        return previous + isNaN(amount) ? 0 : amount
+      }, 0)
+    }
   })
 
   router.get('/balances', async ctx => {

@@ -1,8 +1,22 @@
 import Server from 'socket-request-server'
 import {formatUnits} from '@leofcoin/utils'
 
-export default (chain, port, protocol) => {
-  return Server({ port, protocol }, {
+export default (chain, port, networkVersion) => {
+  return Server({ port, protocol: networkVersion }, {
+    network: async () => {
+      send({version: networkVersion})
+    },
+    networkStats: async () => {
+      send({
+        version: networkVersion,
+        peers: peernet.peers,
+        accounts: await accountsStore.length(),
+        accountsHolding: Object.values(await chain.balances).reduce((previous, current) => {
+          const amount = Number(formatUnits(current)) || 0
+          return previous + isNaN(amount) ? 0 : amount
+        }, 0)
+      })
+    },
     balances: async ({send}) => 
       send(await chain.balances),
     balanceOf: async ({address, format = false}, {send}) => {
