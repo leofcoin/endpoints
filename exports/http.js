@@ -4,7 +4,7 @@ import Router from '@koa/router'
 import {formatUnits} from '@leofcoin/utils'
 import {readFile} from 'fs/promises'
 import Showdown from 'showdown'
-import shared from './shared'
+import shared from './shared.js'
 import { dirname, join} from 'path'
 import { fileURLToPath } from 'url'
 

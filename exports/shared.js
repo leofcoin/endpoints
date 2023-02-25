@@ -28,3 +28,7 @@ export const networkStats = async () => {
     topHolders
   }
 }
+
+export default {
+  networkStats
+}

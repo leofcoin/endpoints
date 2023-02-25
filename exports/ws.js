@@ -1,6 +1,6 @@
 import Server from 'socket-request-server'
 import {formatUnits} from '@leofcoin/utils'
-import shared from './shared'
+import shared from './shared.js'
 
 export default (chain, port, networkVersion) => {
   return Server({ port, protocol: networkVersion }, {
