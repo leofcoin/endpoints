@@ -48,7 +48,7 @@ export default (chain, port, networkVersion) => {
     peerId: ({send}) =>
       send(peernet.peerId),
     peers: ({send}) =>
-      send(peernet.peers),
+      send(peernet.peers.map(([id, peer]) => id)),
     validators: ({send}) => 
       send(chain.validators),
     lookup: async ({name}, {send}) => 

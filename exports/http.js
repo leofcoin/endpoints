@@ -91,7 +91,7 @@ export default (chain, port, networkVersion) => {
   )
 
   router.get('/peers', ctx => 
-    ctx.body = peernet.peers
+    ctx.body = peernet.peers.map(([id, peer]) => id)
   )  
 
   router.get('/lookup', async ctx => {

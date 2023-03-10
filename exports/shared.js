@@ -21,7 +21,7 @@ export const networkStats = async (chain, networkVersion) => {
   
   return {
     version: networkVersion,
-    peers: peernet.peers,
+    peers: peernet.peers.map(([id, peer]) => id),
     accounts: await accountsStore.length(),
     accountsHolding,
     accountsHoldingAmount: formatUnits(accountsHoldingAmount).toString(),
