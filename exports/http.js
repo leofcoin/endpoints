@@ -29,7 +29,7 @@ export default (chain, port, networkVersion) => {
     }
   })
 
-  router.get('/networkStats', async () => {
+  router.get('/networkStats', async ctx => {
     ctx.body = await shared.networkStats(chain, networkVersion)
   })
 
@@ -75,9 +75,10 @@ export default (chain, port, networkVersion) => {
     try {      
       const tx = await chain.sendTransaction(ctx.query.transaction)
       await tx.wait()
-      send(tx)
+      delete tx.wait
+      ctx.body = tx
     } catch (error) {
-      send(202)
+      // ctx(202)
     }
   })
 

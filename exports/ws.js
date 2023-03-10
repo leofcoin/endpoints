@@ -39,6 +39,7 @@ export default (chain, port, networkVersion) => {
       try {
         const tx = await chain.sendTransaction(transaction)
         await tx.wait()
+        delete tx.wait
         send(tx)
       } catch (error) {
         send(202)
