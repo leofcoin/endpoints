@@ -178,6 +178,24 @@ await client.totalTransactions()
 ```
 <br>
 
+#### [poolTransactions()](https://remote.leofcoin.org/poolTransactions)
+```js
+await client.poolTransactions()
+```
+<br>
+
+#### [transactionsInPool()](https://remote.leofcoin.org/transactionsInPool)
+```js
+await client.transactionsInPool()
+```
+<br>
+
+#### [transactionPoolSize()](https://remote.leofcoin.org/transactionPoolSize)
+```js
+await client.transactionPoolSize()
+```
+<br>
+
 #### [totalBlocks()](https://remote.leofcoin.org/totalBlocks)
 ```js
 await client.totalBlocks()

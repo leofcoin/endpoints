@@ -69,6 +69,12 @@ export default (chain, port, networkVersion) => {
       send(chain.totalSize),
     totalTransactions: ({send}) => 
       send(chain.totalTransactions),
+    poolTransactions: async ({send}) =>
+      send(await transactionPoolStore.get()),
+    transactionsInPool: async ({send}) => 
+      send(await transactionPoolStore.length()),
+    transactionPoolSize: async ({send}) => 
+      send(await transactionPoolStore.size()),
     totalBlocks: ({send}) => 
       send(chain.blocks.length),  
     nativeCalls: ({send}) => 

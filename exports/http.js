@@ -130,6 +130,16 @@ export default (chain, port, networkVersion) => {
     ctx.body = chain.totalTransactions
   )
 
+  router.get('/poolTransactions', async ctx =>
+    ctx.body = await transactionPoolStore.get()
+  )
+    router.get('/transactionsInPool', async ctx => 
+    ctx.body = await transactionPoolStore.length()
+  )
+    router.get('/transactionPoolSize', async ctx => 
+    ctx.body = await transactionPoolStore.size()
+  )
+
   router.get('/totalBlocks', ctx => 
     ctx.body = chain.blocks.length
   )  
