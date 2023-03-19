@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "exports": {
-    "./api": "./exportys/api.md",
+    "./api": "./exports/api.md",
     "./http": "./exports/http.js",
     "./ws": "./exports/ws.js"
   },
