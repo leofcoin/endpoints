@@ -100,7 +100,10 @@ export default (chain, port, networkVersion) => {
       } catch (error) {
         send(error)
       }      
-    }    
+    },
+    bootstrap: async ({send}) => {
+      send(await shared.bootstrap())
+    } 
   })  
 }
 

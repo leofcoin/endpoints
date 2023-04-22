@@ -29,6 +29,11 @@ export const networkStats = async (chain, networkVersion) => {
   }
 }
 
+const bootstrap = async () => {
+  return blockStore.values()
+}
+
 export default {
-  networkStats
+  networkStats,
+  bootstrap
 }

@@ -176,6 +176,10 @@ export default (chain, port, networkVersion) => {
     }
   })
 
+  router.get('/bootstrap', async ctx => {
+    ctx.body = await shared.bootstrap()
+  })
+
   // todo finish ...
   api.use(cors('*'))
   api.use(router.routes())
