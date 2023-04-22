@@ -177,7 +177,7 @@ export default (chain, port, networkVersion) => {
   })
 
   router.get('/bootstrap', async ctx => {
-    ctx.body = await shared.bootstrap()
+    ctx.body = (await shared.bootstrap()).map(value => value.toString())
   })
 
   // todo finish ...
