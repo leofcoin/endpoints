@@ -176,6 +176,10 @@ export default (chain, port, networkVersion) => {
     }
   })
 
+  router.get('/lastBlock', async ctx => ctx.body = chain.lastBlock)
+
+  router.get('/blockHashMap', async ctx => ctx.body = chain.blockHashMap)
+
   router.get('/bootstrap', async ctx => {
     ctx.body = (await shared.bootstrap()).map(value => Array.from(value.toString()))
   })

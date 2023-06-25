@@ -101,6 +101,11 @@ export default (chain, port, networkVersion) => {
         send(error)
       }      
     },
+    
+    lastBlock: async ctx => ctx.body = chain.lastBlock,
+
+    blockHashMap: async ctx => ctx.body = chain.blockHashMap,
+
     bootstrap: async ({send}) => {
       send(await shared.bootstrap())
     } 

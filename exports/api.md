@@ -213,3 +213,39 @@ await client.nativeCalls()
 await client.participating()
 ```
 <br>
+
+#### [network()](https://remote.leofcoin.org/network)
+```js
+await client.network()
+```
+<br>
+
+#### [networkStats()](https://remote.leofcoin.org/networkStats)
+```js
+await client.networkStats()
+```
+<br>
+
+#### [networkStats()](https://remote.leofcoin.org/networkStats)
+```js
+await client.networkStats()
+```
+<br>
+
+#### [lastBlock()](https://remote.leofcoin.org/lastBlock)
+```js
+await client.lastBlock()
+```
+<br>
+
+#### [blockHashMap()](https://remote.leofcoin.org/blockHashMap)
+```js
+await client.blockHashMap()
+```
+<br>
+
+#### [bootstrap()](https://remote.leofcoin.org/bootstrap)
+```js
+await client.bootstrap()
+```
+<br>
