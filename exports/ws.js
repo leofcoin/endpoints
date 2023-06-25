@@ -32,7 +32,7 @@ export default (chain, port, networkVersion) => {
     hasTransactionToHandle: async ({send}) => 
       send(await chain.hasTransactionToHandle()),
     getBlock: ({index}, {send}) => 
-      send(chain.blocks[index]),
+      send(chain.blocks[index - 1]),
     blocks:({amount}, {send}) => {
       send(chain.blocks.slice(amount))},
     sendTransaction: async (transaction, {send}) => {      

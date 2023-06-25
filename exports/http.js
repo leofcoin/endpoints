@@ -65,7 +65,7 @@ export default (chain, port, networkVersion) => {
     ctx.body = await chain.getNonce(ctx.query.address)
   })
 
-  router.get('/getBlock', ctx => ctx.body = chain.blocks[ctx.query.index])
+  router.get('/getBlock', ctx => ctx.body = chain.blocks[ctx.query.index - 1])
 
   router.get('/blocks', ctx => {
     ctx.body = chain.blocks.slice(ctx.query.amount)
