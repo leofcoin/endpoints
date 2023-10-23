@@ -8,7 +8,11 @@
     "./http": "./exports/http.js",
     "./ws": "./exports/ws.js"
   },
+  "files": [
+    "./exports"
+  ],
   "scripts": {
+    "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -29,5 +33,12 @@
     "koa": "^2.14.1",
     "showdown": "^2.1.0",
     "socket-request-server": "^1.6.3"
+  },
+  "devDependencies": {
+    "@types/koa__cors": "^4.0.1",
+    "@types/koa__router": "^12.0.1",
+    "@types/node": "^20.8.6",
+    "@types/showdown": "^2.0.2",
+    "typescript": "^5.2.2"
   }
 }
