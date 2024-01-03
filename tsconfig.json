@@ -4,8 +4,7 @@
     "moduleResolution": "NodeNext",
     "outDir": "./exports",
     "declaration": true,
-    "types": [
-      "node"
-    ]
-  }
+    "types": ["node"]
+  },
+  "include": ["src/*.ts"]
 }
