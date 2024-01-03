@@ -20,13 +20,13 @@ export default (chain, port, networkVersion, remote = false) => {
       },
       getNonce: async ({ address }, { send }) => send(await chain.getNonce(address)),
       selectedAccount: ({ send }) => {
-        if (remote) send(peernet.selectedAccount)
+        if (remote) send(globalThis.peernet.selectedAccount)
         else send(405)
       },
       selectAccount: async ({ address }, { send }) => {
         if (remote)
           try {
-            await walletStore.put('selected-account', address)
+            await globalThis.walletStore.put('selected-account', address)
             send(200)
           } catch (error) {
             send(404)
@@ -34,7 +34,7 @@ export default (chain, port, networkVersion, remote = false) => {
         else send(405)
       },
       accounts: async ({ send }) => {
-        if (remote) send(JSON.parse(new TextDecoder().decode(await walletStore.get('accounts'))))
+        if (remote) send(JSON.parse(new TextDecoder().decode(await globalThis.walletStore.get('accounts'))))
         else send(405)
       },
       hasTransactionToHandle: async ({ send }) => send(await chain.hasTransactionToHandle()),
@@ -52,8 +52,8 @@ export default (chain, port, networkVersion, remote = false) => {
           send(202)
         }
       },
-      peerId: ({ send }) => send(peernet.peerId),
-      peers: ({ send }) => send(peernet.peers.map(([id, peer]) => id)),
+      peerId: ({ send }) => send(globalThis.peernet.peerId),
+      peers: ({ send }) => send(globalThis.peernet.peers.map(([id, peer]) => id)),
       validators: ({ send }) => send(chain.validators),
       lookup: async ({ name }, { send }) => send(await chain.lookup(name)),
       staticCall: async ({ contract, method, params }, { send }) =>
@@ -69,9 +69,9 @@ export default (chain, port, networkVersion, remote = false) => {
       lastBlock: async (ctx) => (ctx.body = await chain.lastBlock),
       nativeCalls: async ({ send }) => send(await chain.nativeCalls),
       participating: async ({ send }) => send(await chain.participating),
-      poolTransactions: async ({ send }) => send(await transactionPoolStore.get()),
-      transactionsInPool: async ({ send }) => send(await transactionPoolStore.length()),
-      transactionPoolSize: async ({ send }) => send(await transactionPoolStore.size()),
+      poolTransactions: async ({ send }) => send(await globalThis.transactionPoolStore.get()),
+      transactionsInPool: async ({ send }) => send(await globalThis.transactionPoolStore.length()),
+      transactionPoolSize: async ({ send }) => send(await globalThis.transactionPoolStore.size()),
       participate: async ({ address }, { send }) => {
         if (remote) send(await chain.participate(address))
         else send(405)
