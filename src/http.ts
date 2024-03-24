@@ -82,7 +82,8 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
   router.get('/getBlock', async (ctx) => (ctx.body = await chain.getBlock(ctx.query.index)))
 
   router.get('/blocks', async (ctx) => {
-    ctx.body = chain.getBlocks(ctx.query.amount)
+    const limit = ctx.query.amount
+    ctx.body = await globalThis.blockStore.values(limit)
   })
 
   router.get('/sendTransaction', async (ctx) => {

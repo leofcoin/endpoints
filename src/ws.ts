@@ -40,7 +40,7 @@ export default (chain, port, networkVersion, remote = false) => {
       hasTransactionToHandle: async ({ send }) => send(await chain.hasTransactionToHandle()),
       getBlock: async ({ index }, { send }) => send(await chain.getBlock(index)),
       blocks: async ({ amount }, { send }) => {
-        send(await chain.getBlocks(amount))
+        send(await globalThis.blockStore.values(amount))
       },
       sendTransaction: async (transaction, { send }) => {
         try {
