@@ -183,26 +183,10 @@ await client.validators()
 
 <br>
 
-#### [nativeBurns()](https://remote.leofcoin.org/nativeBurns)
-
-```js
-await client.nativeBurns()
-```
-
-<br>
-
 #### [contracts()](https://remote.leofcoin.org/contracts)
 
 ```js
 await client.contracts()
-```
-
-<br>
-
-#### [nativeMints()](https://remote.leofcoin.org/nativeMints)
-
-```js
-await client.nativeMints()
 ```
 
 <br>
@@ -215,6 +199,30 @@ await client.nativeToken()
 
 <br>
 
+#### [nativeCalls()](https://remote.leofcoin.org/nativeCalls)
+
+```js
+await client.nativeCalls()
+```
+
+<br>
+
+#### [nativeMints()](https://remote.leofcoin.org/nativeMints)
+
+```js
+await client.nativeMints()
+```
+
+<br>
+
+#### [nativeBurns()](https://remote.leofcoin.org/nativeBurns)
+
+```js
+await client.nativeBurns()
+```
+
+<br>
+
 #### [nativeTransfers()](https://remote.leofcoin.org/nativeTransfers)
 
 ```js
@@ -223,10 +231,26 @@ await client.nativeTransfers()
 
 <br>
 
-#### [totalSize()](https://remote.leofcoin.org/totalSize)
+#### [totalBurnAmount()](https://remote.leofcoin.org/totalBurnAmount)
 
 ```js
-await client.totalSize()
+await client.totalBurnAmount()
+```
+
+<br>
+
+#### [totalMintAmount()](https://remote.leofcoin.org/totalMintAmount)
+
+```js
+await client.totalMintAmount()
+```
+
+<br>
+
+#### [totalTransferAmount()](https://remote.leofcoin.org/totalTransferAmount)
+
+```js
+await client.totalTransferAmount()
 ```
 
 <br>
@@ -235,6 +259,14 @@ await client.totalSize()
 
 ```js
 await client.totalTransactions()
+```
+
+<br>
+
+#### [totalSize()](https://remote.leofcoin.org/totalSize)
+
+```js
+await client.totalSize()
 ```
 
 <br>
@@ -267,14 +299,6 @@ await client.transactionPoolSize()
 
 ```js
 await client.totalBlocks()
-```
-
-<br>
-
-#### [nativeCalls()](https://remote.leofcoin.org/nativeCalls)
-
-```js
-await client.nativeCalls()
 ```
 
 <br>
