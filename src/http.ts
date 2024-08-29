@@ -111,24 +111,29 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
     '/staticCall',
     async (ctx) => (ctx.body = await chain.staticCall(ctx.query.contract, ctx.query.method, ctx.query.params))
   )
-
-  router.get('/nativeBurns', async (ctx) => (ctx.body = await chain.nativeBurns))
-
   router.get('/contracts', async (ctx) => (ctx.body = await chain.contracts))
-
-  router.get('/nativeMints', async (ctx) => (ctx.body = await chain.nativeMints))
 
   router.get('/nativeToken', async (ctx) => (ctx.body = await chain.nativeToken))
 
+  router.get('/nativeCalls', async (ctx) => (ctx.body = await chain.nativeCalls))
+
+  router.get('/nativeMints', async (ctx) => (ctx.body = await chain.nativeMints))
+
+  router.get('/nativeBurns', async (ctx) => (ctx.body = await chain.nativeBurns))
+
   router.get('/nativeTransfers', async (ctx) => (ctx.body = await chain.nativeTransfers))
 
-  router.get('/totalSize', async (ctx) => (ctx.body = await chain.totalSize))
+  router.get('/totalBurnAmount', async (ctx) => (ctx.body = await chain.totalBurnAmount))
+
+  router.get('/totalMintAmount', async (ctx) => (ctx.body = await chain.totalMintAmount))
+
+  router.get('/totalTransferAmount', async (ctx) => (ctx.body = await chain.totalTransferAmount))
 
   router.get('/totalTransactions', async (ctx) => (ctx.body = await chain.totalTransactions))
 
-  router.get('/totalBlocks', async (ctx) => (ctx.body = await chain.totalBlocks))
+  router.get('/totalSize', async (ctx) => (ctx.body = await chain.totalSize))
 
-  router.get('/nativeCalls', async (ctx) => (ctx.body = await chain.nativeCalls))
+  router.get('/totalBlocks', async (ctx) => (ctx.body = await chain.totalBlocks))
 
   router.get('/lastBlock', async (ctx) => (ctx.body = await chain.lastBlock))
 
