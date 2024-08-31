@@ -191,6 +191,14 @@ await client.contracts()
 
 <br>
 
+#### [totalContracts()](https://remote.leofcoin.org/totalContracts)
+
+```js
+await client.totalContracts()
+```
+
+<br>
+
 #### [nativeToken()](https://remote.leofcoin.org/nativeToken)
 
 ```js

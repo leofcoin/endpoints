@@ -59,6 +59,7 @@ export default (chain, port, networkVersion, remote = false) => {
       staticCall: async ({ contract, method, params }, { send }) =>
         send(await chain.staticCall(contract, method, params)),
       contracts: async ({ send }) => send(await chain.contracts),
+      totalContracts: async ({ send }) => send(await chain.totalContracts),
       nativeToken: async ({ send }) => send(await chain.nativeToken),
       nativeCalls: async ({ send }) => send(await chain.nativeCalls),
       nativeMints: async ({ send }) => send(await chain.nativeMints),

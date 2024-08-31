@@ -113,6 +113,8 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
   )
   router.get('/contracts', async (ctx) => (ctx.body = await chain.contracts))
 
+  router.get('/totalContracts', async (ctx) => (ctx.body = await chain.totalContracts))
+
   router.get('/nativeToken', async (ctx) => (ctx.body = await chain.nativeToken))
 
   router.get('/nativeCalls', async (ctx) => (ctx.body = await chain.nativeCalls))
