@@ -139,6 +139,8 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
 
   router.get('/lastBlock', async (ctx) => (ctx.body = await chain.lastBlock))
 
+  router.get('/lastBlockHeight', async (ctx) => (ctx.body = await chain.lastBlockHeight))
+
   router.get('/poolTransactions', async (ctx) => (ctx.body = await globalThis.transactionPoolStore.get()))
 
   router.get('/transactionsInPool', async (ctx) => (ctx.body = await globalThis.transactionPoolStore.length()))

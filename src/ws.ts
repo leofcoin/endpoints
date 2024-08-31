@@ -77,6 +77,7 @@ export default (chain, port, networkVersion, remote = false) => {
             (await globalThis.accountsStore.size())
         ),
       lastBlock: async (ctx) => (ctx.body = await chain.lastBlock),
+      lastBlockHeight: async (ctx) => (ctx.body = await chain.lastBlockHeight),
       participating: async ({ send }) => send(await chain.participating),
       poolTransactions: async ({ send }) => send(await globalThis.transactionPoolStore.get()),
       transactionsInPool: async ({ send }) => send(await globalThis.transactionPoolStore.length()),

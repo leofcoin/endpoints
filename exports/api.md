@@ -311,6 +311,14 @@ await client.totalBlocks()
 
 <br>
 
+#### [lastBlockHeight()](https://remote.leofcoin.org/lastBlockHeight)
+
+```js
+await client.lastBlockHeight()
+```
+
+<br>
+
 #### [participating()](https://remote.leofcoin.org/participating)
 
 ```js
