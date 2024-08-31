@@ -68,9 +68,13 @@ export default (chain, port, networkVersion, remote = false) => {
       totalMintAmount: async ({ send }) => send(await chain.totalMintAmount),
       totalTransferAmount: async ({ send }) => send(await chain.totalTransferAmount),
       totalTransactions: async ({ send }) => send(await chain.totalTransactions),
-      totalBlocks: async ({ send }) => send(chain.totalBlocks),
+      totalBlocks: async ({ send }) => send(await chain.totalBlocks),
       totalSize: async ({ send }) =>
-        send((await transactionPoolStore.size()) + (await blockStore.size()) + (await accountsStore.size())),
+        send(
+          (await globalThis.transactionPoolStore.size()) +
+            (await globalThis.blockStore.size()) +
+            (await globalThis.accountsStore.size())
+        ),
       lastBlock: async (ctx) => (ctx.body = await chain.lastBlock),
       participating: async ({ send }) => send(await chain.participating),
       poolTransactions: async ({ send }) => send(await globalThis.transactionPoolStore.get()),
