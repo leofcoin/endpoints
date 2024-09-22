@@ -1,11 +1,11 @@
-import { formatUnits, BigNumber } from '@leofcoin/utils'
+import { formatUnits } from '@leofcoin/utils'
 export const networkStats = async (chain, networkVersion) => {
   let accountsHolding = 0
-  let accountsHoldingAmount = BigNumber.from(0)
+  let accountsHoldingAmount = BigInt(0)
   let topHolders = []
   const balances = Object.entries(await chain.balances)
     .map(([holder, amount]) => {
-      amount = BigNumber.from(amount)
+      // amount = BigNumber.from(amount)
       return { holder, amount }
     })
     // @ts-ignore
@@ -13,9 +13,9 @@ export const networkStats = async (chain, networkVersion) => {
 
   for (let { holder, amount } of balances) {
     // @ts-ignore
-    if (amount.gt(0)) {
+    if (amount > 0) {
       // @ts-ignore
-      accountsHoldingAmount = accountsHoldingAmount.add(amount)
+      accountsHoldingAmount += amount
       accountsHolding += 1
       // @ts-ignore
       topHolders.length < 100 && topHolders.push({ holder, amount: formatUnits(amount) })
