@@ -15,8 +15,8 @@ export default (chain, port, networkVersion, remote = false) => {
       balances: async ({ send }) => send(await chain.balances),
       balanceOf: async ({ address, format = false }, { send }) => {
         const balance = (await chain.balances)[address]
-        if (balance) send(format ? formatUnits(balance) : balance)
-        else send(0)
+        if (balance) send(format ? formatUnits(balance).toString() : balance.toString())
+        else send('0n')
       },
       getNonce: async ({ address }, { send }) => send(await chain.getNonce(address)),
       selectedAccount: ({ send }) => {

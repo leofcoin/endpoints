@@ -44,8 +44,8 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
   router.get('/balanceOf', async (ctx) => {
     // @ts-ignore
     const balance = (await chain.balances)[ctx.query.address]
-    if (balance) ctx.body = ctx.query.format ? formatUnits(balance) : balance
-    else ctx.body = 0
+    if (balance) ctx.body = ctx.query.format ? formatUnits(balance).toString() : balance.toString()
+    else ctx.body = '0n'
   })
 
   router.get('/selectedAccount', (ctx) => {

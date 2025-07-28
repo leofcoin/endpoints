@@ -1,4 +1,5 @@
 import { formatUnits } from '@leofcoin/utils'
+
 export const networkStats = async (chain, networkVersion) => {
   let accountsHolding = 0
   let accountsHoldingAmount = BigInt(0)
