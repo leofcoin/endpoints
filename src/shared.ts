@@ -9,16 +9,12 @@ export const networkStats = async (chain, networkVersion) => {
       // amount = BigNumber.from(amount)
       return { holder, amount }
     })
-    // @ts-ignore
-    .sort((a, b) => formatUnits(b.amount.sub(a.amount)))
+    .sort((a, b) => formatUnits(b.amount - a.amount))
 
   for (let { holder, amount } of balances) {
-    // @ts-ignore
     if (amount > 0) {
-      // @ts-ignore
       accountsHoldingAmount += amount
       accountsHolding += 1
-      // @ts-ignore
       topHolders.length < 100 && topHolders.push({ holder, amount: formatUnits(amount) })
     }
   }

@@ -7,5 +7,6 @@
     "declaration": true,
     "types": ["node", "@leofcoin/utils"]
   },
-  "include": ["src/*.ts"]
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules"]
 }
