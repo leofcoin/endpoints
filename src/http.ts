@@ -1,7 +1,7 @@
 import koa from 'koa'
 import cors from '@koa/cors'
 import Router from '@koa/router'
-import { formatUnits } from '@leofcoin/utils'
+import { formatUnits, jsonStringifyBigInt } from '@leofcoin/utils'
 import { readFile } from 'fs/promises'
 import Showdown from 'showdown'
 import shared from './shared.js'
@@ -91,7 +91,7 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
       const tx = await chain.sendTransaction(ctx.query.transaction)
       await tx.wait()
       delete tx.wait
-      ctx.body = tx
+      ctx.body = JSON.stringify(tx, jsonStringifyBigInt)
     } catch (error) {
       // ctx(202)
     }
@@ -159,7 +159,7 @@ export default (chain, port, networkVersion, remote: boolean = false) => {
       const tx = await chain.deployContract(ctx.query.contract, ctx.query.transaction)
       await tx.wait()
       delete tx.wait
-      ctx.body = JSON.stringify(tx)
+      ctx.body = JSON.stringify(tx, jsonStringifyBigInt)
     } catch (error) {
       ctx.body = error.mesage
     }
